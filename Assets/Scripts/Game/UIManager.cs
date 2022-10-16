@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour, IStartBtn
     public Image waitingImage;
     public Image mainBG;
 
-    IVideoPlayManager videoMgr;
+    //IVideoPlayManager videoMgr;
 
 
     public event OnPlayBtnClicked OnPlayBtnClickedHandler;
@@ -26,9 +26,9 @@ public class UIManager : MonoBehaviour, IStartBtn
     {
         enterBtn.onClick.AddListener(() => StartMuseum());
         
-        videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
+        //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
         //videoMgr.OnVideoStartHandler += HideEndMessage;
-        videoMgr.OnVideoEndHandler += ShowEndMessage;
+        //videoMgr.OnVideoEndHandler += ShowEndMessage;
         resetBtn.onClick.AddListener(() => SceneManager.LoadScene(0));
 
     }
@@ -86,13 +86,13 @@ public class UIManager : MonoBehaviour, IStartBtn
     }
 
 
-    public List<Sprite> waitingIcon;
+    //public List<Sprite> waitingIcon;
     public float spawnTime = 0f;
     public float glowSpeed = 1f;
     public bool pm;
     void Update()
     {
-        PlayWaitingIcon();
+        //PlayWaitingIcon();
         //if(Input.GetMouseButton(1))
         //{
         //    ChangeMode(false);
@@ -142,7 +142,7 @@ public class UIManager : MonoBehaviour, IStartBtn
     }
 
 
-
+/*
     int frameCnt = 0;
     int ratio = 0;
     //millisecond
@@ -158,5 +158,5 @@ public class UIManager : MonoBehaviour, IStartBtn
         ratio = 0;
         waitingImage.sprite = waitingIcon[frameCnt];
     }
-
+*/
 }

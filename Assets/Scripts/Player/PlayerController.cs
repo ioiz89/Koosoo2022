@@ -16,14 +16,14 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 4.0f;
     public float moveSpeed = 2.0f;
 
-    IVideoPlayManager videoMgr;
+    //IVideoPlayManager videoMgr;
 
     public GameObject camera;
 
     private void Start()
     {
-        videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
-        videoMgr.OnVideoEndHandler += SetIsVideoEnd;
+        //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
+        //videoMgr.OnVideoEndHandler += SetIsVideoEnd;
         SetCurrentTransform();
     }
 
