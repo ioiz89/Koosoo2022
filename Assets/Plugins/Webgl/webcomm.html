@@ -1,0 +1,23 @@
+
+//sample
+
+<div class="message-form centered">
+   <h2>Message for Unity</h2>
+   <input type="text" name="txtMessage" id="txtMessage" placeholder="Enter message..." />
+   <button onclick="sendMessageToUnity()">Send</button>
+</div>
+
+<script>
+   // Function which sends the message to Unity
+   function sendMessageToUnity() {
+      // Get the input field
+      const txtMessage = document.getElementById("txtMessage");
+      // Get the message
+      const message = txtMessage.value;
+      // Clear the input field
+      txtMessage.value = "";
+      // Send message to the Unity scene
+      // Params: "Target object in the scene", "Function name", "Parameters"
+      unityInstance.SendMessage("WebBridge", "ReceiveMessageFromPage", message);
+   }
+</script>
