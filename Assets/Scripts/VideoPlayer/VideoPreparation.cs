@@ -14,7 +14,13 @@ public class VideoPreparation : MonoBehaviour, IGameManager
     public event OnVideoEnd OnVideoEndHandler;
 
     public event OnGameStart OnGameStartHandler;
+    public event OnGameReward OnGameRewardHandler;
     public event OnGameFinish OnGameFinishHandler;
+
+    public void ShowReward()
+    {
+        this.OnGameRewardHandler?.Invoke();
+    }
 
     public void FinishGame()
     {

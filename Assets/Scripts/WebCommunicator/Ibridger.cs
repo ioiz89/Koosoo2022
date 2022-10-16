@@ -7,6 +7,7 @@ public delegate void OnPlayBtnClicked();
 public delegate void OnVideoStart();
 public delegate void OnVideoEnd();
 public delegate void OnGameStart();
+public delegate void OnGameReward();
 public delegate void OnGameFinish();
 //public delegate void OnBackroundChanged(bool didChanged);
 //public delegate void OnReceivedBG(string bgName);
@@ -31,7 +32,9 @@ public interface IVideoPlayManager
 public interface IGameManager
 {
     event OnGameStart OnGameStartHandler;
+    event OnGameReward OnGameRewardHandler;
     event OnGameFinish OnGameFinishHandler;
+    public void ShowReward();
     public void FinishGame();
     //void StartMovie();
 }

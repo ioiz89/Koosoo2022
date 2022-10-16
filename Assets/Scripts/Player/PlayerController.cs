@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour//, IGameManager
             // image not found -> animation
                 audioSource.clip = audioClips[1];
                 audioSource.Play();
+                gameManager.ShowReward();
                 isFinish = true;
                 return;
             }
