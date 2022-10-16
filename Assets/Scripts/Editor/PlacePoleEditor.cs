@@ -77,13 +77,13 @@ public class PlacePoleEditor : EditorWindow
             return;
         var parents = new GameObject();
         parents.name = "PoleGrp";
-        var currZpos = originPos.z;
-        for (int i = 0; i < horizontal; i++)
+        var currZpos = originPos.x;
+        for (int i = 0; i < vertical; i++)
         {
-            currZpos = originPos.z + (distance * i);
-            for (int j = 0; j < vertical; j++)
+            currZpos = originPos.x - (distance * i);
+            for (int j = 0; j < horizontal; j++)
             {
-                var pos = new Vector3(originPos.x + (distance * j), originPos.y, currZpos);
+                var pos = new Vector3(currZpos, originPos.y, originPos.z + (distance * j));
                 var pole = (GameObject)GameObject.Instantiate(source);
                 pole.transform.position = pos;
                 pole.transform.localScale = originSize;
