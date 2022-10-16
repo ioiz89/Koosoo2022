@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using WebViewGeneralName;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour, IGameManager
+public class PlayerController : MonoBehaviour//, IGameManager
 {
     Vector3 playerStartPosition = new Vector3(9f, 1f, -3.5f);
     public AudioClip[] audioClips;  // 0: collision, 1: finish
@@ -21,13 +21,15 @@ public class PlayerController : MonoBehaviour, IGameManager
     public GameObject camera;
 
     IGameManager gameManager;
-    public event OnGameStart OnGameStartHandler;
-    public event OnGameFinish OnGameFinishHandler;
+    //public event OnGameStart OnGameStartHandler;
+    //public event OnGameFinish OnGameFinishHandler;
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Mgr").GetComponent<VideoPreparation>() as IGameManager;
-        gameManager.OnGameStartHandler += SetPlayerPosition;
+        gameManager.OnGameFinishHandler += SetPlayerPosition;
+        
+        
         //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
         //videoMgr.OnVideoEndHandler += SetIsVideoEnd;
         SetCurrentTransform();
@@ -77,7 +79,8 @@ public class PlayerController : MonoBehaviour, IGameManager
 
         if(isFinish && !audioSource.isPlaying)
         {
-            OnGameFinishHandler.Invoke();
+            gameManager.FinishGame();
+            //OnGameFinishHandler.Invoke();
         }
         
         MouseRotation();
