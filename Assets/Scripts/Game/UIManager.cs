@@ -14,12 +14,9 @@ public class UIManager : MonoBehaviour, IStartBtn
     public Button enterBtn;
     bool isShowroomOpen = false;
     public Button resetBtn;
-
     public Image waitingImage;
     public Image mainBG;
-
-    //IVideoPlayManager videoMgr;
-
+    public AudioSource backgroundAudio;
 
     public event OnPlayBtnClicked OnPlayBtnClickedHandler;
     private void Start()
@@ -30,15 +27,14 @@ public class UIManager : MonoBehaviour, IStartBtn
         //videoMgr.OnVideoStartHandler += HideEndMessage;
         //videoMgr.OnVideoEndHandler += ShowEndMessage;
         resetBtn.onClick.AddListener(() => SceneManager.LoadScene(0));
-
+        backgroundAudio.mute = true;
     }
-
-    
 
     private void StartMuseum()
     {
         OnPlayBtnClickedHandler?.Invoke();
         needPlayIcon = true;
+        backgroundAudio.mute = false;
     }
     public void SetActiveShowroom(bool isOpen)
     {
@@ -47,6 +43,7 @@ public class UIManager : MonoBehaviour, IStartBtn
         // if(isOpen)
         //     Debug.Log("OPEN");
     }
+
     public void ChangeMode(bool isGameStart = true)
     {
         if(isGameStart)
@@ -62,7 +59,6 @@ public class UIManager : MonoBehaviour, IStartBtn
             UICamera.depth = 0;
             UICanvas.enabled = true;
         }
-
     }
 
     public bool needPlayIcon = false;
@@ -85,7 +81,6 @@ public class UIManager : MonoBehaviour, IStartBtn
         waitingImage.gameObject.SetActive(false);
     }
 
-
     //public List<Sprite> waitingIcon;
     public float spawnTime = 0f;
     public float glowSpeed = 1f;
@@ -97,7 +92,6 @@ public class UIManager : MonoBehaviour, IStartBtn
         //{
         //    ChangeMode(false);
         //}
-
         if(isShowroomOpen)
         {
             var tempAlpha= (Time.time - spawnTime) * glowSpeed % 1;
@@ -109,7 +103,6 @@ public class UIManager : MonoBehaviour, IStartBtn
             var tempAlpha = (Time.time - spawnTime) * glowSpeed % 1;
             EmissiveResetBtn(resetBtn.GetComponent<Image>(), tempAlpha);
         }
-
     }
 
     void EmissiveButton(float newAlpha)
@@ -140,23 +133,4 @@ public class UIManager : MonoBehaviour, IStartBtn
     {
         resetBtn.gameObject.SetActive(false);
     }
-
-
-/*
-    int frameCnt = 0;
-    int ratio = 0;
-    //millisecond
-    public int ratioGapInMillisecond = 500;
-    void PlayWaitingIcon()
-    {
-        if (!needPlayIcon)
-            return;
-        ratio += 1;
-        if(ratio != ratioGapInMillisecond)
-            return; 
-        frameCnt = (frameCnt + 1) % waitingIcon.Count;
-        ratio = 0;
-        waitingImage.sprite = waitingIcon[frameCnt];
-    }
-*/
 }

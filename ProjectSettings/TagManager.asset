@@ -9,6 +9,7 @@ TagManager:
   - StartBtn
   - Enterance
   - VideoManager
+  - Box
   layers:
   - Default
   - TransparentFX

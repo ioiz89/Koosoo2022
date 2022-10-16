@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 2988478339093954119}
   m_Layer: 0
   m_Name: boxes+pack
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,9 +722,10 @@ GameObject:
   - component: {fileID: 8040502288714756648}
   - component: {fileID: 5779970803723503670}
   - component: {fileID: 3312366680473188477}
+  - component: {fileID: 560413489470000359}
   m_Layer: 0
   m_Name: box02
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,6 +794,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &560413489470000359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461015709924982749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010714145, y: 0.010714147, z: 0.020717077}
+  m_Center: {x: -5.820766e-10, y: -1.4212934e-16, z: 0.010001466}
 --- !u!1 &8327078746837804778
 GameObject:
   m_ObjectHideFlags: 0

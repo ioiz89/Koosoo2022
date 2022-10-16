@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip[] audioClips;  // 0: collision, 1: finish
     public AudioSource audioSource;
+    public int CollisionCount = 0;
+    private int LifeCount = 3;
     public bool isInMainBG = true;
     public bool hasFirstTouch = false;
     public bool isInShowroom = false;
-
     public bool isVideoEnd = false;
-
     public float turnSpeed = 4.0f;
     public float moveSpeed = 2.0f;
-
-    //IVideoPlayManager videoMgr;
-
     public GameObject camera;
 
     private void Start()
@@ -32,22 +30,25 @@ public class PlayerController : MonoBehaviour
         isVideoEnd = true;
     }
 
-    void OnTriggerEnter(Collider obj)
+    void OnCollisionEnter(Collision other)
     {
-        if(!isInShowroom)
-            return;
-        audioSource.Play();
-        this.gameObject.transform.position = new Vector3(2.1f, 0.8f, 1.7f);
-
-
-    }
-
-    void OnTriggerExit(Collider obj)
-    {
-        if(!isInShowroom)
+        // success
+        if(other.gameObject.CompareTag("Box"))
         {
-            isInShowroom = true;
+            audioSource.clip = audioClips[1];
+            audioSource.Play();
             return;
+        }
+
+        // fail
+        CollisionCount ++;
+        audioSource.clip = audioClips[0];
+        audioSource.Play();
+
+        // die
+        if(CollisionCount == LifeCount)
+        {
+            //finish
         }
     }
 
@@ -103,7 +104,6 @@ public class PlayerController : MonoBehaviour
     float prevYRot = 0.0f;
     Vector3 prevPos = new Vector3();
 
-
     void DetectHasFirstTouch()
     {
         if (hasFirstTouch)
@@ -114,7 +114,6 @@ public class PlayerController : MonoBehaviour
             hasFirstTouch = true;
             GameObject.FindGameObjectWithTag(TAGS.WebCanvas).GetComponent<UIManager>().HideWaitIcon();
         }
-
     }
 
     void SetCurrentTransform()
@@ -128,14 +127,12 @@ public class PlayerController : MonoBehaviour
         return this.transform.rotation.eulerAngles.y;
     }
 
-
     void ResetByESC()
     {
         if (!isVideoEnd)
             return;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            
         }
         //if(Input.GetKeyDown(KeyCode.R))
         //{
