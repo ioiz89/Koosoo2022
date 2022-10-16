@@ -32,6 +32,7 @@ public interface IGameManager
 {
     event OnGameStart OnGameStartHandler;
     event OnGameFinish OnGameFinishHandler;
+    public void FinishGame();
     //void StartMovie();
 }
 
