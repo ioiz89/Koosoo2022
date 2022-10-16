@@ -13,6 +13,10 @@ namespace DCTL
 
     public enum ELineDir
     {
-        r, t, l, b, none
+        r = 270, 
+        f = 0, 
+        l = 90, 
+        b = 180, 
+        none = 1
     }
 }
