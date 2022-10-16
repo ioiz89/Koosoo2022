@@ -15,46 +15,52 @@ public class VideoPreparation : MonoBehaviour, IGameManager
 
     public event OnGameStart OnGameStartHandler;
     public event OnGameFinish OnGameFinishHandler;
-    
-/*
-    private void Awake()
+
+    public void FinishGame()
     {
-        if (!video)
-            video = GetComponent<VideoPlayer>();
-        video.playOnAwake = false;
-        startHandler = GameObject.FindGameObjectWithTag(TAGS.WebCanvas).GetComponent<UIManager>() as IStartBtn;
-        startHandler.OnPlayBtnClickedHandler += StartMovie;
-    }
-    
-    
-    public void StartMovie()
-    {
-        StartCoroutine(PlayVideo());
+        this.OnGameFinishHandler?.Invoke();
     }
 
-    IEnumerator PlayVideo()
-    {
-        video.source = VideoSource.Url;
-        video.url = url;
-#if UNITY_EDITOR
-        video.url = test;
-#endif
 
-        video.isLooping = false;
-        video.Prepare();
-        while(video.isPrepared)
-            yield return new WaitForSeconds(0.5f);
-        video.Play();
-        StartCoroutine(DisplayVideoEnd());
-    }
+    /*
+        private void Awake()
+        {
+            if (!video)
+                video = GetComponent<VideoPlayer>();
+            video.playOnAwake = false;
+            startHandler = GameObject.FindGameObjectWithTag(TAGS.WebCanvas).GetComponent<UIManager>() as IStartBtn;
+            startHandler.OnPlayBtnClickedHandler += StartMovie;
+        }
 
-    IEnumerator DisplayVideoEnd()
-    {
-        yield return new WaitUntil(() => video.isPlaying);
-        //OnVideoStartHandler?.Invoke();
-        yield return new WaitUntil(() => !video.isPlaying);
-        OnVideoEndHandler?.Invoke();
-        StartMovie();
-    }
-*/
+
+        public void StartMovie()
+        {
+            StartCoroutine(PlayVideo());
+        }
+
+        IEnumerator PlayVideo()
+        {
+            video.source = VideoSource.Url;
+            video.url = url;
+    #if UNITY_EDITOR
+            video.url = test;
+    #endif
+
+            video.isLooping = false;
+            video.Prepare();
+            while(video.isPrepared)
+                yield return new WaitForSeconds(0.5f);
+            video.Play();
+            StartCoroutine(DisplayVideoEnd());
+        }
+
+        IEnumerator DisplayVideoEnd()
+        {
+            yield return new WaitUntil(() => video.isPlaying);
+            //OnVideoStartHandler?.Invoke();
+            yield return new WaitUntil(() => !video.isPlaying);
+            OnVideoEndHandler?.Invoke();
+            StartMovie();
+        }
+    */
 }
