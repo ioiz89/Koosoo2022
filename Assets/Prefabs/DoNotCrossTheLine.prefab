@@ -1031,7 +1031,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010714145, y: 0.010714147, z: 0.020717077}
+  m_Size: {x: 0.014, y: 0.014, z: 0.020717077}
   m_Center: {x: -5.820766e-10, y: -1.4212934e-16, z: 0.010001466}
 --- !u!1 &7112523105782454452
 GameObject:
@@ -1060,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7112523105782454452}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.0832, y: 0.032, z: 0.0167}
+  m_LocalPosition: {x: 0.0964, y: 0.032, z: 0.0167}
   m_LocalScale: {x: 0.23400344, y: 0.028753001, z: 0.1}
   m_Children: []
   m_Father: {fileID: 8142629259079504480}
@@ -1283,7 +1283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be56880e11645403da014ac088b4fde7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be56880e11645403da014ac088b4fde7, type: 3}
@@ -1381,7 +1381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 71b5a3e3c874645a0ad3f3fe9bacbb7c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1372998537907178439, guid: 71b5a3e3c874645a0ad3f3fe9bacbb7c, type: 3}
       propertyPath: m_Materials.Array.data[0]

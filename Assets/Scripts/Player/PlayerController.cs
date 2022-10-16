@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    Vector3 playerStartPosition = new Vector3(9f, 1f, -3.5f);
     public AudioClip[] audioClips;  // 0: collision, 1: finish
     public AudioSource audioSource;
     public int CollisionCount = 0;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        this.transform.position = playerStartPosition;
         //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
         //videoMgr.OnVideoEndHandler += SetIsVideoEnd;
         SetCurrentTransform();
@@ -32,23 +34,24 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        // success
         if(other.gameObject.CompareTag("Box"))
         {
+            // image not found -> animation
             audioSource.clip = audioClips[1];
             audioSource.Play();
             return;
         }
 
-        // fail
-        CollisionCount ++;
-        audioSource.clip = audioClips[0];
-        audioSource.Play();
-
-        // die
-        if(CollisionCount == LifeCount)
+        if(other.gameObject.CompareTag("Pole"))
         {
-            //finish
+            CollisionCount ++;
+            audioSource.clip = audioClips[0];
+            audioSource.Play();
+
+            if(CollisionCount == LifeCount)
+            {
+                // die
+            }
         }
     }
 
