@@ -11,6 +11,7 @@ TagManager:
   - VideoManager
   - Box
   - Pole
+  - Mgr
   layers:
   - Default
   - TransparentFX

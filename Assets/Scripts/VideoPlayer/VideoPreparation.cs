@@ -3,17 +3,20 @@ using UnityEngine;
 using UnityEngine.Video;
 using WebViewGeneralName;
 
-public class VideoPreparation : MonoBehaviour, IVideoPlayManager
+public class VideoPreparation : MonoBehaviour, IGameManager
 {
-    public VideoPlayer video;
+    //public VideoPlayer video;
     string url = "http://www.wfs-game.art/files/movies/encoding_test.mp4";
     string test = "https://samplelib.com/lib/preview/mp4/sample-5s.mp4";
     IStartBtn startHandler;
 
     public event OnVideoStart OnVideoStartHandler;
     public event OnVideoEnd OnVideoEndHandler;
-    
 
+    public event OnGameStart OnGameStartHandler;
+    public event OnGameFinish OnGameFinishHandler;
+    
+/*
     private void Awake()
     {
         if (!video)
@@ -53,4 +56,5 @@ public class VideoPreparation : MonoBehaviour, IVideoPlayManager
         OnVideoEndHandler?.Invoke();
         StartMovie();
     }
+*/
 }

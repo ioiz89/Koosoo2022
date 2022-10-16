@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using WebViewGeneralName;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IGameManager
 {
     Vector3 playerStartPosition = new Vector3(9f, 1f, -3.5f);
     public AudioClip[] audioClips;  // 0: collision, 1: finish
@@ -15,16 +15,27 @@ public class PlayerController : MonoBehaviour
     public bool hasFirstTouch = false;
     public bool isInShowroom = false;
     public bool isVideoEnd = false;
+    bool isFinish = false;
     public float turnSpeed = 4.0f;
     public float moveSpeed = 2.0f;
     public GameObject camera;
 
+    IGameManager gameManager;
+    public event OnGameStart OnGameStartHandler;
+    public event OnGameFinish OnGameFinishHandler;
+
     private void Start()
     {
-        this.transform.position = playerStartPosition;
+        gameManager = GameObject.FindGameObjectWithTag("Mgr").GetComponent<VideoPreparation>() as IGameManager;
+        gameManager.OnGameStartHandler += SetPlayerPosition;
         //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
         //videoMgr.OnVideoEndHandler += SetIsVideoEnd;
         SetCurrentTransform();
+    }
+
+    void SetPlayerPosition()
+    {
+        this.gameObject.transform.position = playerStartPosition;
     }
 
     private void SetIsVideoEnd()
@@ -36,10 +47,14 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Box"))
         {
+            if(!isFinish)
+            {
             // image not found -> animation
-            audioSource.clip = audioClips[1];
-            audioSource.Play();
-            return;
+                audioSource.clip = audioClips[1];
+                audioSource.Play();
+                isFinish = true;
+                return;
+            }
         }
 
         if(other.gameObject.CompareTag("Pole"))
@@ -60,6 +75,11 @@ public class PlayerController : MonoBehaviour
         if (isInMainBG)
             return;
 
+        if(isFinish && !audioSource.isPlaying)
+        {
+            OnGameFinishHandler.Invoke();
+        }
+        
         MouseRotation();
         KeyboardMove();
         DetectHasFirstTouch();

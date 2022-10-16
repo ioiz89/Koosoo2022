@@ -17,15 +17,17 @@ public class UIManager : MonoBehaviour, IStartBtn
     public Image waitingImage;
     public Image mainBG;
     public AudioSource backgroundAudio;
+    IGameManager gameManager;
 
     public event OnPlayBtnClicked OnPlayBtnClickedHandler;
     private void Start()
     {
         enterBtn.onClick.AddListener(() => StartMuseum());
         
+        gameManager = GameObject.FindGameObjectWithTag("Mgr").GetComponent<VideoPreparation>() as IGameManager;
         //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
-        //videoMgr.OnVideoStartHandler += HideEndMessage;
-        //videoMgr.OnVideoEndHandler += ShowEndMessage;
+        gameManager.OnGameStartHandler += HideEndMessage;
+        gameManager.OnGameFinishHandler += ShowEndMessage;
         resetBtn.onClick.AddListener(() => SceneManager.LoadScene(0));
         backgroundAudio.mute = true;
     }
