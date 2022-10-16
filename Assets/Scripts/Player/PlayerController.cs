@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour//, IGameManager
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Mgr").GetComponent<VideoPreparation>() as IGameManager;
-        gameManager.OnGameFinishHandler += SetPlayerPosition;
+        //gameManager.OnGameFinishHandler += SetPlayerPosition;
         
         
         //videoMgr = GameObject.FindGameObjectWithTag(TAGS.WebVideoMgr).GetComponent<VideoPreparation>() as IVideoPlayManager;
@@ -35,9 +35,11 @@ public class PlayerController : MonoBehaviour//, IGameManager
         SetCurrentTransform();
     }
 
-    void SetPlayerPosition()
+    void InitGame()
     {
         this.gameObject.transform.position = playerStartPosition;
+        this.gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        isFinish = false;
     }
 
     private void SetIsVideoEnd()
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour//, IGameManager
 
             if(CollisionCount == LifeCount)
             {
+                CollisionCount = 0;
+                InitGame();
                 // die
             }
         }
@@ -83,10 +87,14 @@ public class PlayerController : MonoBehaviour//, IGameManager
             //OnGameFinishHandler.Invoke();
         }
         
-        MouseRotation();
-        KeyboardMove();
-        DetectHasFirstTouch();
-        SetCurrentTransform();
+        if(!isFinish)
+        {
+            MouseRotation();
+            KeyboardMove();
+            DetectHasFirstTouch();
+            SetCurrentTransform();
+        }
+
         //ResetByESC();
     }
     public Vector2 turn;
