@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/1.unity
-    guid: 308c14fa08532406ea4c260f32049e77
   - enabled: 1
-    path: Assets/Scenes/1_1.unity
-    guid: b904aef718b7e4f709b0c3d2c53d01fd
+    path: Assets/Scenes/DoNotCrossTheLIne.unity
+    guid: 2a70259fb40e4334c87f9a8a3e12a978
   m_configObjects: {}
