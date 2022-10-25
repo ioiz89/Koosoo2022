@@ -104,10 +104,12 @@ public class ShowroomManager : MonoBehaviour
     {
         var dateTime = DateTime.Now;
         var dayOfWeek = dateTime.DayOfWeek;
+        
         if (dayOfWeek != DayOfWeek.Monday)
-            return true;
-        if (dateTime.Hour >= openningHour && dateTime.Hour < closingHour)
-            return true;
+        {
+            if (dateTime.Hour >= openningHour && dateTime.Hour < closingHour)
+                return true;
+        }
         return false;
     }
     bool GetMuseumAvailable_Test()
