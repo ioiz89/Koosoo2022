@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour//, IGameManager
         dir = Camera.main.transform.TransformDirection(dir);
 
         dir.Normalize();
+        dir.y = 0;
 
         transform.position += dir * moveSpeed * Time.deltaTime;
 
