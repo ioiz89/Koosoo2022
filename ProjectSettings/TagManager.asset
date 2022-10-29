@@ -12,6 +12,7 @@ TagManager:
   - Box
   - Pole
   - Mgr
+  - Wall
   layers:
   - Default
   - TransparentFX
