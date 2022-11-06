@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using WebViewGeneralName;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour//, IGameManager
 {
@@ -58,12 +59,15 @@ public class PlayerController : MonoBehaviour//, IGameManager
                 audioSource.Play();
                 gameManager.ShowReward();
                 isFinish = true;
+                StartCoroutine(MoveUp());
                 return;
             }
         }
 
         if(other.gameObject.CompareTag("Pole"))
         {
+            if (isFinish)
+                return;
             CollisionCount ++;
             audioSource.clip = audioClips[0];
             audioSource.Play();
@@ -74,6 +78,31 @@ public class PlayerController : MonoBehaviour//, IGameManager
                 InitGame();
                 // die
             }
+        }
+    }
+    
+    IEnumerator MoveUp()
+    {
+        this.GetComponent<CapsuleCollider>().enabled = false;
+        float deltaTime = 0.0f;
+        float targetTime = 1.0f;
+
+        float endHeight = 1.8f;
+        float initPos = this.transform.position.y;
+
+        while (deltaTime < targetTime)
+        {
+            deltaTime = deltaTime + Time.deltaTime;
+            camera.transform.LookAt(GameObject.FindGameObjectWithTag("Image").transform);
+            var perc = deltaTime / targetTime;
+            var newHeight = Mathf.Lerp(initPos, endHeight, perc);
+
+
+            var newPos = new Vector3(this.transform.position.x, newHeight, this.transform.position.z);
+            this.transform.position = newPos;
+            this.transform.Translate(Vector3.right * 0.003f);
+
+            yield return null;
         }
     }
 
