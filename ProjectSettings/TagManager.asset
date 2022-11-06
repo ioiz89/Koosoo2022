@@ -13,6 +13,7 @@ TagManager:
   - Pole
   - Mgr
   - Wall
+  - Image
   layers:
   - Default
   - TransparentFX
