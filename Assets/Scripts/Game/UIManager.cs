@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour, IStartBtn
         gameManager.OnGameStartHandler += HideEndMessage;
         gameManager.OnGameFinishHandler += ShowEndMessage;
         resetBtn.onClick.AddListener(() => SceneManager.LoadScene(0));
+        backgroundAudio.Stop();
         backgroundAudio.mute = true;
     }
 
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour, IStartBtn
         OnPlayBtnClickedHandler?.Invoke();
         needPlayIcon = true;
         backgroundAudio.mute = false;
+        backgroundAudio.Play();
     }
     public void SetActiveShowroom(bool isOpen)
     {
